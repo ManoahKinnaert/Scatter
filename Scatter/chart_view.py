@@ -46,7 +46,6 @@ class ChartView(FigureCanvas):
         if dialog.exec():
             filenames = dialog.selectedFiles()
             if filenames: filename = filenames[0]
-        print(filename)
         # save the chart
         # TODO: allow user to pick the name of the file
         self.fig.savefig(filename + "/mychart.pdf", format="pdf")
