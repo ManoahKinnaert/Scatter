@@ -18,7 +18,7 @@ class WinViewController:
         self.setup_ui()
 
     def setup_ui(self):
-        self.table_view = self.loader.load("./resources/views/table_view.ui")
+        self.table_view = self.loader.load("./Scatter/resources/views/table_view.ui")
         self.table_controller = TableViewController(self.table_view)
         table_layout = QHBoxLayout()
         self.win.table_frame.setLayout(table_layout)

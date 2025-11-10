@@ -9,7 +9,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     loader = QUiLoader()
 
-    window = loader.load("./resources/views/display.ui")
+    window = loader.load("./Scatter/resources/views/display.ui")
     WinViewController(loader, window)
     window.show()
 
