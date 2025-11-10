@@ -32,6 +32,7 @@ class WinViewController:
         self.win.close_btn.clicked.connect(lambda: self.close())
         self.win.help_btn.clicked.connect(lambda: self.show_help())
         self.win.plot_btn.clicked.connect(lambda: self.plot_data())
+        self.win.export_btn.clicked.connect(lambda: self.chart_view.export())
 
     
     def plot_data(self):

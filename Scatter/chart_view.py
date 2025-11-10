@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import stats 
 
-from PySide6.QtWidgets import QMessageBox
+from PySide6.QtWidgets import QMessageBox, QFileDialog, QDialog
+from pathlib import Path
 
 class ChartView(FigureCanvas):
     def __init__(self, parent, *args, **kwargs):
@@ -35,3 +36,17 @@ class ChartView(FigureCanvas):
             dlg.setText("There must be at least two unique x values\nto be able to perform linear regression!")
             dlg.setIcon(QMessageBox.Critical)
         self.draw()
+
+
+    def export(self):
+        dialog = QFileDialog()
+        dialog.setFileMode(QFileDialog.FileMode.Directory)
+        dialog.setWindowTitle("Save your chart.")
+        filename = ""
+        if dialog.exec():
+            filenames = dialog.selectedFiles()
+            if filenames: filename = filenames[0]
+        print(filename)
+        # save the chart
+        # TODO: allow user to pick the name of the file
+        self.fig.savefig(filename + "/mychart.pdf", format="pdf")
