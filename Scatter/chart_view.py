@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import stats 
 
-from PySide6.QtWidgets import QMessageBox, QFileDialog, QDialog
-from pathlib import Path
+from PySide6.QtWidgets import QMessageBox, QFileDialog
 
 class ChartView(FigureCanvas):
     def __init__(self, parent, *args, **kwargs):
@@ -29,7 +28,8 @@ class ChartView(FigureCanvas):
             def linear_eq(xin):
                 return slope * xin + intercept
             self.axes.plot(x, list(map(linear_eq, x)), c="orange")
-        except: # show error dialog
+        except Exception as e: # show error dialog
+            print("[Exception]:", e)
             dlg = QMessageBox(self.parent)
             dlg.setStyleSheet("background-color: rgb(0, 0, 0);")
             dlg.setWindowTitle("Error!")
@@ -37,15 +37,16 @@ class ChartView(FigureCanvas):
             dlg.setIcon(QMessageBox.Critical)
         self.draw()
 
-
+    # open dialog to choose the file location and name 
     def export(self):
+        filename, _ = self.choose_file_location()
+        self.fig.savefig(filename, format="pdf")
+    
+    # opens simple dialog to select path for the file
+    def choose_file_location(self):
         dialog = QFileDialog()
-        dialog.setFileMode(QFileDialog.FileMode.Directory)
+        #dialog.setFileMode(QFileDialog.FileMode.Directory)
+        dialog.setFileMode(QFileDialog.FileMode.AnyFile)
         dialog.setWindowTitle("Save your chart.")
-        filename = ""
-        if dialog.exec():
-            filenames = dialog.selectedFiles()
-            if filenames: filename = filenames[0]
-        # save the chart
-        # TODO: allow user to pick the name of the file
-        self.fig.savefig(filename + "/mychart.pdf", format="pdf")
+        filename = dialog.getSaveFileName(self.parent, "Save chart", "", "PDF Files (*.pdf)")
+        return filename
