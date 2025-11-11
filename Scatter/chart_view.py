@@ -45,7 +45,6 @@ class ChartView(FigureCanvas):
     # opens simple dialog to select path for the file
     def choose_file_location(self):
         dialog = QFileDialog()
-        #dialog.setFileMode(QFileDialog.FileMode.Directory)
         dialog.setFileMode(QFileDialog.FileMode.AnyFile)
         dialog.setWindowTitle("Save your chart.")
         filename = dialog.getSaveFileName(self.parent, "Save chart", "", "PDF Files (*.pdf)")
