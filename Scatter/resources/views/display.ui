@@ -172,7 +172,7 @@ QPushButton:hover {
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="chart_setttings_btn">
+              <widget class="QPushButton" name="chart_settings_btn">
                <property name="text">
                 <string>Chart Settings</string>
                </property>

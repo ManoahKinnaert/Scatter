@@ -4,15 +4,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import stats 
 
-from PySide6.QtWidgets import QMessageBox, QFileDialog
+from PySide6.QtWidgets import QMessageBox, QDialog, QFileDialog
 
 class ChartView(FigureCanvas):
     def __init__(self, parent, *args, **kwargs):
-        self.parent = parent 
+        self.parent = parent
+        self.chart_title = "LinREG chart" 
 
         plt.style.use("dark_background")
         self.fig = Figure(figsize=(7, 6), dpi=100)
         self.axes = self.fig.add_subplot(111)
+        self.axes.set_title(self.chart_title)
         super().__init__(self.fig, *args, **kwargs)
 
     def plot(self, x: list, y: list):
@@ -27,6 +29,7 @@ class ChartView(FigureCanvas):
             # plot the linreg
             def linear_eq(xin):
                 return slope * xin + intercept
+            self.axes.set_title(self.chart_title)
             self.axes.plot(x, list(map(linear_eq, x)), c="orange")
         except Exception as e: # show error dialog
             print("[Exception]:", e)
@@ -49,3 +52,7 @@ class ChartView(FigureCanvas):
         dialog.setWindowTitle("Save your chart.")
         filename = dialog.getSaveFileName(self.parent, "Save chart", "", "PDF Files (*.pdf)")
         return filename
+
+    def settings(self):
+        dialog = QDialog()
+        dialog.setWindowTitle("Chart Settings")

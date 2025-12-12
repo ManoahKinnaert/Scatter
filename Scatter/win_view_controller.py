@@ -33,7 +33,7 @@ class WinViewController:
         self.win.help_btn.clicked.connect(lambda: self.show_help())
         self.win.plot_btn.clicked.connect(lambda: self.plot_data())
         self.win.export_btn.clicked.connect(lambda: self.chart_view.export())
-
+        self.win.chart_settings_btn.clicked.connect(lambda: self.chart_view.settings())
     
     def plot_data(self):
         x, y = self.table_controller.extract_data()
