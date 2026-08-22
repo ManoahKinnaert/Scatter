@@ -6,6 +6,9 @@ import sys
 from win_view_controller import WinViewController
 
 if __name__ == "__main__":
+    """
+    Main entry, setup app, loader and exec.
+    """
     app = QApplication(sys.argv)
     loader = QUiLoader()
 
