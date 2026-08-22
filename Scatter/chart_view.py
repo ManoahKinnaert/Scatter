@@ -7,7 +7,14 @@ from scipy import stats
 from PySide6.QtWidgets import QMessageBox, QDialog, QFileDialog
 
 class ChartView(FigureCanvas):
+    """
+    ChartView class for handling the rendering of the data into a matplotlib chart
+    that can be embedded by use of the qtagg backend.
+    """
     def __init__(self, parent, *args, **kwargs):
+        """
+        Initializer, we set parent, chart title, style, and some other stuff.
+        """
         self.parent = parent
         self.chart_title = "LinREG chart" 
 
@@ -18,6 +25,9 @@ class ChartView(FigureCanvas):
         super().__init__(self.fig, *args, **kwargs)
 
     def plot(self, x: list, y: list):
+        """
+        Method for plotting the data on our matplotlib plot.
+        """
         # first clear the plot 
         self.axes.clear()
         sizes = np.random.uniform(15, 80, len(x))
@@ -40,13 +50,18 @@ class ChartView(FigureCanvas):
             dlg.setIcon(QMessageBox.Critical)
         self.draw()
 
-    # open dialog to choose the file location and name 
     def export(self):
+        """
+        Method for exporting the chart to a pdf.
+        """
         filename, _ = self.choose_file_location()
         self.fig.savefig(filename, format="pdf")
     
     # opens simple dialog to select path for the file
     def choose_file_location(self):
+        """
+        Method that opens a simple dialog to select a path for saving the chart.
+        """
         dialog = QFileDialog()
         dialog.setFileMode(QFileDialog.FileMode.AnyFile)
         dialog.setWindowTitle("Save your chart.")
@@ -54,5 +69,9 @@ class ChartView(FigureCanvas):
         return filename
 
     def settings(self):
+        """
+        Method for opening a settings dialog to alter some settings.
+        TODO: More work to be done here.
+        """
         dialog = QDialog()
         dialog.setWindowTitle("Chart Settings")
