@@ -5,7 +5,13 @@ from table_view_controller import TableViewController
 from chart_view import ChartView
 
 class WinViewController:
+    """
+    WinViewController class, to handle setting up the ui from a ui file and setup buttons events and so on.
+    """
     def __init__(self, loader, win):
+        """
+        Initializer to setup loader, window, window size and other stuff.
+        """
         self.loader = loader 
         self.win = win 
 
@@ -18,6 +24,11 @@ class WinViewController:
         self.setup_ui()
 
     def setup_ui(self):
+        """
+        Method for setting up the ui, it should only be called once. It loads
+        the ui from a ui file and puts the chartview in the right place. On top of that it sets up
+        the button events.
+        """
         self.table_view = self.loader.load("./Scatter/resources/views/table_view.ui")
         self.table_controller = TableViewController(self.table_view)
         table_layout = QHBoxLayout()
@@ -36,11 +47,22 @@ class WinViewController:
         self.win.chart_settings_btn.clicked.connect(lambda: self.chart_view.settings())
     
     def plot_data(self):
+        """
+        Method for extracting the data and plotting the extracted data 
+        on a matplotlib plot (ChartView).
+        """
         x, y = self.table_controller.extract_data()
         self.chart_view.plot(x, y) 
 
     def close(self):
+        """
+        Method for closing the application.
+        """
         sys.exit()
     
     def show_help(self):
+        """
+        Method for showing a help dialog.
+        TODO: To be implemented
+        """
         pass 
