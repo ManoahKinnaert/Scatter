@@ -52,7 +52,8 @@ class WinViewController:
         on a matplotlib plot (ChartView).
         """
         x, y = self.table_controller.extract_data()
-        self.chart_view.plot(x, y) 
+        if x != [] and y != []: self.chart_view.plot(x, y)
+        else: pass # display a warning 
 
     def close(self):
         """
