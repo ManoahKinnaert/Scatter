@@ -3,7 +3,7 @@ import sys
 
 from table_view_controller import TableViewController
 from chart_view import ChartView
-from warning_dialog import WarningDialog
+from message_dialog import WarningDialog
 
 class WinViewController:
     """
@@ -54,7 +54,7 @@ class WinViewController:
         """
         x, y = self.table_controller.extract_data()
         if x != [] and y != []: self.chart_view.plot(x, y)
-        else: WarningDialog("Warning!", "You must enter data for it to be plotted!").exec()
+        else: WarningDialog("You must enter data for it to be plotted!").exec()
 
     def close(self):
         """
