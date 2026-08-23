@@ -3,7 +3,7 @@ import sys
 
 from table_view_controller import TableViewController
 from chart_view import ChartView
-from message_dialog import WarningDialog
+from message_dialog import WarningDialog, HelpDialog
 
 class WinViewController:
     """
@@ -64,7 +64,6 @@ class WinViewController:
     
     def show_help(self):
         """
-        Method for showing a help dialog.
-        TODO: To be implemented
+        Method for showing a 'useful' help dialog.
         """
-        pass 
+        HelpDialog("You're on your own for now...").exec()

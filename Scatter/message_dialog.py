@@ -21,6 +21,6 @@ class WarningDialog(MessageDialog):
     def __init__(self, message: str):
         super().__init__("Warning!", message)
 
-class HelpDialog(QDialog):
+class HelpDialog(MessageDialog):
     def __init__(self, message: str):
         super().__init__("Info", message)
