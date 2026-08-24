@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QHBoxLayout
 import sys
-
+from pathlib import Path 
 from .table_view_controller import TableViewController
 from .chart_view import ChartView
 from .message_dialog import WarningDialog, HelpDialog
@@ -30,7 +30,8 @@ class WinViewController:
         the ui from a ui file and puts the chartview in the right place. On top of that it sets up
         the button events.
         """
-        self.table_view = self.loader.load("./Scatter/resources/views/table_view.ui")
+        ui_path = Path(__file__).parent / "resources" / "views" / "table_view.ui"
+        self.table_view = self.loader.load(ui_path)
         self.table_controller = TableViewController(self.table_view)
         table_layout = QHBoxLayout()
         self.win.table_frame.setLayout(table_layout)
