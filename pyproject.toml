@@ -16,3 +16,6 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 include = ["Scatter*"]
+
+[tool.setuptools.package-data]
+Scatter = ["resources/views/*.ui"]
