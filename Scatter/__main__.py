@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QApplication
 from PySide6.QtUiTools import QUiLoader
 import sys 
 
-from win_view_controller import WinViewController
+from . import WinViewController
 
 if __name__ == "__main__":
     """

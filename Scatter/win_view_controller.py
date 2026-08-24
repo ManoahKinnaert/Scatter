@@ -1,9 +1,9 @@
 from PySide6.QtWidgets import QHBoxLayout
 import sys
 
-from table_view_controller import TableViewController
-from chart_view import ChartView
-from message_dialog import WarningDialog, HelpDialog
+from .table_view_controller import TableViewController
+from .chart_view import ChartView
+from .message_dialog import WarningDialog, HelpDialog
 
 class WinViewController:
     """
