@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QTableWidgetItem
+from PySide6.QtWidgets import QWidget, QTableWidget, QTableWidgetItem
 from PySide6.QtWidgets import QStyledItemDelegate, QLineEdit
 from PySide6.QtGui import QDoubleValidator
 
@@ -7,7 +7,7 @@ class NumericalDelegate(QStyledItemDelegate):
     """
     Validator that allows only for double values to be entered in the table.
     """
-    def createEditor(self, parent, *args):
+    def createEditor(self, parent: QWidget, *args):
         editor = QLineEdit(parent)
         validator = QDoubleValidator()
         editor.setValidator(validator)
@@ -28,8 +28,8 @@ class TableViewController:
         """
         Initializer method.
         """
-        self.view = table 
-        self.table = self.view.table
+        self.view: QWidget = table 
+        self.table: QTableWidget = self.view.table
         # restrict input values to be numerical only
         self.table.setItemDelegate(NumericalDelegate(self.table))
 
