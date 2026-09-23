@@ -1,9 +1,9 @@
 from PySide6.QtWidgets import QHBoxLayout
 import sys
 from pathlib import Path 
-from .table_view_controller import TableViewController
-from .chart_view import ChartView
-from .message_dialog import WarningDialog, HelpDialog
+from table_view_controller import TableViewController
+from chart_view import ChartView
+from message_dialog import WarningDialog, HelpDialog
 
 class WinViewController:
     """
@@ -17,6 +17,7 @@ class WinViewController:
         self.win = win 
 
         self.win.resize(1000, 800)
+        self.win.setWindowTitle("Scatter")
 
         self.table_view = None 
         self.table_controller = None 

@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 
-from . import WinViewController
+from win_view_controller import WinViewController
 
 if __name__ == "__main__":
     """

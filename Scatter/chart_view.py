@@ -55,8 +55,13 @@ class ChartView(FigureCanvas):
         Method for exporting the chart to a pdf.
         """
         filename, _ = self.choose_file_location()
-        self.fig.savefig(filename, format="pdf")
-    
+        try:
+            self.fig.savefig(filename, format="pdf")
+        except FileNotFoundError as e:
+            print(f"[DEBUG]: {e}")
+        except Exception as e:
+            print(f"[ERROR]: {e}")
+
     # opens simple dialog to select path for the file
     def choose_file_location(self):
         """
@@ -75,3 +80,4 @@ class ChartView(FigureCanvas):
         """
         dialog = QDialog()
         dialog.setWindowTitle("Chart Settings")
+        dialog.exec()   # show the dialog... there is nothing in it yet...
