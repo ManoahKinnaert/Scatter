@@ -1,4 +1,5 @@
-from PySide6.QtWidgets import QHBoxLayout
+from PySide6.QtWidgets import QWidget, QHBoxLayout
+from PySide6.QtUiTools import QUiLoader
 import sys
 from pathlib import Path 
 from table_view_controller import TableViewController
@@ -9,19 +10,19 @@ class WinViewController:
     """
     WinViewController class, to handle setting up the ui from a ui file and setup buttons events and so on.
     """
-    def __init__(self, loader, win):
+    def __init__(self, loader: QUiLoader, win: QWidget):
         """
         Initializer to setup loader, window, window size and other stuff.
         """
-        self.loader = loader 
-        self.win = win 
+        self.loader: QUiLoader = loader 
+        self.win: QWidget = win 
 
         self.win.resize(1000, 800)
         self.win.setWindowTitle("Scatter")
 
-        self.table_view = None 
-        self.table_controller = None 
-        self.chart_view = None 
+        self.table_view: QWidget | None = None 
+        self.table_controller: QWidget | None = None 
+        self.chart_view: QWidget | None = None 
 
         self.setup_ui()
 
